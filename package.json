@@ -1,12 +1,13 @@
 {
   "name": "file_subfolder_subdivider",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "subdivide files in a folder into subfolders",
   "main": "./dist/index.js",
   "bin": "./dist/fss.js",
   "scripts": {
     "clean": "rimraf -f build && mkdir build && cd build && mkdir terser && cd .. && rimraf -f dist && mkdir dist",
-    "build": "npm run clean",
+    "typescript": "tsc --build tsconfig.json",
+    "build": "npm run clean && npm run typescript",
     "test": "jest"
   },
   "repository": {
