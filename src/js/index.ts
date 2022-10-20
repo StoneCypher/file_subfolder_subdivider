@@ -22,19 +22,54 @@
 
 
 
-let digits = 5,
-    mask   = '';
+// let digits = 5,
+//     mask   = '';
 
 
 
 
 
-var { spawn, exec } = require('child_process');
+// var { spawn, exec } = require('child_process');
 
 
 
 
 
-export {
+const default_digits = 5,
+      default_mask   = 'frame$.png';
 
-};
+
+
+
+
+import { program } from 'commander';
+
+program
+  .option('-d, --digits <number>', 'digits to expand to; use 0 to not expand', default_digits.toString())
+  .option('-m, --mask <string>',   'text mask for filename; use $ for inset',  default_mask);
+
+program.parse();
+
+
+
+
+
+const options = program.opts(),
+      digits  = options['digits'] ?? default_digits,
+      mask    = options['mask']   ?? default_mask;
+
+
+
+
+
+function bootstrap() {
+  console.log(`${digits}, ${mask}`);
+}
+
+bootstrap();
+
+
+
+
+
+export { bootstrap };

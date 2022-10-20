@@ -1,13 +1,15 @@
 {
   "name": "file_subfolder_subdivider",
-  "version": "0.2.0",
+  "version": "0.3.0",
+  "type": "module",
   "description": "subdivide files in a folder into subfolders",
   "main": "./dist/index.js",
   "bin": "./dist/fss.js",
   "scripts": {
     "clean": "rimraf -f build && mkdir build && cd build && mkdir terser && cd .. && rimraf -f dist && mkdir dist",
+    "rollup": "rollup -c",
     "typescript": "tsc --build tsconfig.json",
-    "build": "npm run clean && npm run typescript",
+    "build": "npm run clean && npm run typescript && npm run rollup",
     "test": "jest"
   },
   "repository": {
@@ -28,7 +30,10 @@
   "devDependencies": {
     "commander": "^9.4.1",
     "rimraf": "^3.0.2",
-    "rollup": "^3.2.3",
+    "rollup": "^2.79.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-polyfill-node": "^0.10.2",
     "terser": "^5.15.1",
     "typescript": "^4.8.4"
   }
