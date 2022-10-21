@@ -1,15 +1,11 @@
 {
   "name": "file_subfolder_subdivider",
-  "version": "0.3.0",
-  "type": "module",
+  "version": "0.4.0",
   "description": "subdivide files in a folder into subfolders",
-  "main": "./dist/index.js",
-  "bin": "./dist/fss.js",
+  "main": "./src/js/fss.js",
+  "bin": "./src/js/fss.js",
   "scripts": {
-    "clean": "rimraf -f build && mkdir build && cd build && mkdir terser && cd .. && rimraf -f dist && mkdir dist",
-    "rollup": "rollup -c",
-    "typescript": "tsc --build tsconfig.json",
-    "build": "npm run clean && npm run typescript && npm run rollup",
+    "build": "node ./src/js/no_build.js",
     "test": "jest"
   },
   "repository": {
@@ -29,12 +25,6 @@
   "homepage": "https://github.com/StoneCypher/file_subfolder_subdivider#readme",
   "devDependencies": {
     "commander": "^9.4.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.79.1",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-polyfill-node": "^0.10.2",
-    "terser": "^5.15.1",
-    "typescript": "^4.8.4"
+    "rimraf": "^3.0.2"
   }
 }
