@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 
 // So the situation is weird.
 //
@@ -39,6 +40,8 @@ const default_range_digits = 3,
       default_mask_digits  = 4,
       default_mask         = 'frame##.png',
       default_parallelism  = 1;
+
+const is_win = true;  // todo
 
 
 
@@ -91,6 +94,7 @@ function filename_instance(index, u_range_digits, u_mask_digits, mask) {
 
   const inset   = index.toString().padStart(u_range_digits, '0'),
         maskset = ''.padStart(u_mask_digits, '?');
+//      maskset = '*';
 
   return `${mask_lo}${inset}${maskset}${mask_hi}`;
 
@@ -100,11 +104,11 @@ function filename_instance(index, u_range_digits, u_mask_digits, mask) {
 
 
 
-const l_move_command = (u_index, u_range_digits, u_mask_digits, u_mask) =>
-  `mv ${filename_instance(u_index, u_range_digits, u_mask_digits, u_mask)} ./${index}/ `;
+const l_move_command = (u_index, u_range_digits, u_mask_digits, u_mask, u_pad_index) =>
+  `mv ${filename_instance(u_index, u_range_digits, u_mask_digits, u_mask)} ./${u_pad_index}/ `;
 
-const w_move_command = (index, range_digits, mask_digits, mask) =>
-  `move ${filename_instance(index, range_digits, mask_digits, mask)} .\${index} `;
+const w_move_command = (index, range_digits, mask_digits, mask, u_pad_index) =>
+  `move ${filename_instance(index, range_digits, mask_digits, mask)} ${u_pad_index} `;
 
 
 function move_command(index, range_digits, mask_digits, mask) {
@@ -112,11 +116,12 @@ function move_command(index, range_digits, mask_digits, mask) {
   const pad_index = index.toString().padStart(range_digits, '0');
   if (!(is_quiet)) { console.log(`  Filling ${pad_index}`); }
 
-  // execSync(
-  //   is_win
-  //     ? w_move_command(index, range_digits, mask_digits, mask)
-  //     : l_move_command(index, range_digits, mask_digits, mask)
-  // );
+  const cmd = is_win
+    ? w_move_command(index, range_digits, mask_digits, mask, pad_index)
+    : l_move_command(index, range_digits, mask_digits, mask, pad_index)
+
+  if (index === 0) { console.log(cmd); }
+  execSync( cmd );
 
 }
 
@@ -125,7 +130,7 @@ function move_command(index, range_digits, mask_digits, mask) {
 
 
 const  l_mkdir = index =>
-  ``;
+  `md ${index}`;
 
 const  w_mkdir = index =>
   `mkdir ${index}`;
@@ -136,11 +141,13 @@ function mkdir(u_index, u_range_digits) {
   const pad_index = u_index.toString().padStart(u_range_digits, '0');
   if (!(is_quiet)) { console.log(`\nMaking directory ${pad_index}`); }
 
-  // execSync(
-  //   is_win
-  //     ? w_mkdir(pad_index)
-  //     : l_mkdir(pad_index)
-  // );
+  const cmd = is_win
+    ? w_mkdir(pad_index)
+    : l_mkdir(pad_index)
+
+  try {
+    execSync( cmd );
+  } catch (e) { }
 
 }
 
@@ -164,7 +171,7 @@ function test() {
 
 
 function make_range(u_dir_idx) {
-  mkdir(u_dir_idx);
+  mkdir(u_dir_idx, range_digits);
   move_command(u_dir_idx, range_digits, mask_digits, mask)
 }
 

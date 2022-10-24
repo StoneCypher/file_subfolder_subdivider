@@ -1,9 +1,12 @@
 {
   "name": "file_subfolder_subdivider",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "subdivide files in a folder into subfolders",
   "main": "./src/js/fss.js",
-  "bin": "./src/js/fss.js",
+  "bin": {
+    "fss": "./src/js/fss.js",
+    "fsst": "./src/js/testgen.js"
+  },
   "scripts": {
     "build": "node ./src/js/no_build.js",
     "test": "jest"
