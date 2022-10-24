@@ -130,7 +130,7 @@ function move_command(index, range_digits, mask_digits, mask) {
 
 
 const  l_mkdir = index =>
-  `md ${index}`;
+  `mkdir ${index}`;
 
 const  w_mkdir = index =>
   `mkdir ${index}`;

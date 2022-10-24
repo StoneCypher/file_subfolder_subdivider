@@ -1,6 +1,6 @@
 {
   "name": "file_subfolder_subdivider",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "subdivide files in a folder into subfolders",
   "main": "./src/js/fss.js",
   "bin": {
