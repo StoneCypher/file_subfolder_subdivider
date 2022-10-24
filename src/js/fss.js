@@ -41,7 +41,7 @@ const default_range_digits = 3,
       default_mask         = 'frame##.png',
       default_parallelism  = 1;
 
-const is_win = true;  // todo
+const is_win = (process.platform === 'win32');  // todo
 
 
 
