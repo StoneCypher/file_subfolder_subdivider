@@ -121,8 +121,13 @@ function move_command(index, range_digits, mask_digits, mask) {
     : l_move_command(index, range_digits, mask_digits, mask, pad_index)
 
   if (index === 0) { console.log(cmd); }
-  execSync( cmd );
 
+}
+
+function do_move_command(index, range_digits, mask_digits, mask) {
+  try {
+    execSync( move_command(index, range_digits, mask_digits, mask) );
+  } catch (e) {}
 }
 
 
@@ -172,7 +177,7 @@ function test() {
 
 function make_range(u_dir_idx) {
   mkdir(u_dir_idx, range_digits);
-  move_command(u_dir_idx, range_digits, mask_digits, mask)
+  do_move_command(u_dir_idx, range_digits, mask_digits, mask)
 }
 
 
