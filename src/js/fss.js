@@ -121,6 +121,7 @@ function move_command(index, range_digits, mask_digits, mask) {
     : l_move_command(index, range_digits, mask_digits, mask, pad_index)
 
   if (index === 0) { console.log(cmd); }
+  return cmd;
 
 }
 
