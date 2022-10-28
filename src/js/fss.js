@@ -125,9 +125,7 @@ function move_command(index, range_digits, mask_digits, mask) {
 }
 
 function do_move_command(index, range_digits, mask_digits, mask) {
-  try {
-    execSync( move_command(index, range_digits, mask_digits, mask) );
-  } catch (e) {}
+  execSync( move_command(index, range_digits, mask_digits, mask) );
 }
 
 
